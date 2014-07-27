@@ -1,4 +1,5 @@
 run_analysis <- function() {
+
 library(plyr)
 library(reshap2)
 
@@ -36,7 +37,7 @@ mean_std <- test_train[,meanstd]
 
 ### Question 3: Use descriptive activity names to name the activities in the data set
 ### This requires a join between test_train and activities data frames.
-# Input:  test_train
+### Input:  test_train
 ### Output: tidy_data
 
 activities <- read.table("UCI_HAR_Dataset/activity_labels.txt", header=F, col.names=c("ActivityCode", "ActivityLabel"))
