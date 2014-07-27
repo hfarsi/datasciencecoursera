@@ -1,0 +1,81 @@
+## This is a markdown file
+
+Smart phones equipped with inertial sensors like tri-axial accelerometers and Gyroscope are capable of 
+sending (in addition to other services like voice, text, and data) digitized signals measuring motion, 
+acceleration, gravity, and body angular position,  which can be processed to identify activities of the 
+person carrying the smart phone. Data from an experiment involving 30 participants (Subjects), while 
+performing 6 activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) each 
+for duration of 15 minutes (with sampling period of 2.5 second), measures the following 17 signals: 
+
+Signal 				Time/Frequency 	Axis
+
+Body Acceleration 			T/F		X,Y,Z/X,Y,Z
+Gravity Acceleration			T		X,Y,Z/
+Body acceleration Jerk			T/F		X,Y,Z/X,Y,Z
+Body Angular Speed			T/F		X,Y,Z/X,Y,Z
+Body Angular acceleration		T 		X,Y,Z/
+Body Acceleration Magnitude		T/F		X,Y,Z/X,Y,Z
+X,Y,ZGravity Acceleration Magnitude	T 		X,Y,Z/
+Body Acceleration Jerk Magnitude	T/F		X,Y,Z/X,Y,Z
+Body Angular Speed Magnitude		T/F		X,Y,Z/X,Y,Z
+Body Angular Acceleration Magnitude	T/F		X,Y,Z/X,Y,Z
+
+The signal data are normalized to estimate the following set of variables, creating a total of 561 
+variables. 
+mean(): Mean value
+std(): Standard deviation
+mad(): Median absolute deviation 
+max(): Largest value in array
+min(): Smallest value in array
+sma(): Signal magnitude area
+energy(): Energy measure. Sum of the squares divided by the number of values. 
+iqr(): Interquartile range 
+entropy(): Signal entropy
+arCoeff(): Auto-regression coefficients with Burg order equal to 4
+correlation(): correlation coefficient between two signals
+maxInds(): index of the frequency component with largest magnitude
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+skewness(): skewness of the frequency domain signal 
+kurtosis(): kurtosis of the frequency domain signal 
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between two vectors.
+
+Variables in Tidy Data Set:
+ActivityCode ActivityLabel Subject statfcn TimeBodyAccelerationMeanX ………………
+1            6        LAYING       1 Average                 0.2215982
+2            6        LAYING       2 Average                 0.2813734
+3            6        LAYING       3 Average                 0.2755169
+4            6        LAYING       4 Average                 0.2635592
+5            6        LAYING       5 Average                 0.2783343
+ActivityCode : 1,2,3,4,5,6
+ActivityLabel : WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+Subject : 1,2,3,4,…..,28,29,30
+Statfnc : Average/Mean, Std, Min, Max, Med
+Measurements:
+Following the guidelines for a tidy dataset with respect to having descriptive variable names, because 
+no two variables can have the same name and the description should not be abbreviated, or have any 
+special characters (especially those that could create problem for R compiling or executing, like 
+parenthesis) I concluded the best approach is to use names that are close to the original names and 
+yet clear enough to read and distinguish from similar names. Original variables (features) names are 
+modified to have a capital first letter for each word in the name string. All special characters are 
+removed, as well. Following are a smaple of the modified variable names.  
+TimeBodyAccelerationMeanX	                       
+TimeBodyAccelerationMeanY
+TimeBodyAccelerationMeanZ
+FrequencyBodyAccelerationJerkBandsEnergy18       
+FrequencyBodyAccelerationJerkBandsEnergy916      
+angleTimeBodyGyroscopeJerkMean,gravityMean        
+angleXgravityMean                                
+
+Note: It would have been better if we could include the axis in a paranthesis after a function, e.g. 
+Mean(X). But R cannot distinguish variables with () from a function. 
+
+Procedure for creating the tidy data set:
+This process has three phases. Phase one is done in question 1. It builds on the original data set and 
+adds the variable names and subject IDs to the measurement data frames for each of test and training 
+subsets separately and then merges the two tables (named, test_train). In phase two, done in question 
+4, the original variable names are modified to comply with the guidelines for a tidy dataset. 
+
+Phase 3 is done after question 5. where the measurement values are grouped by each combination of 
+(Subject, Activity) and the statics functions (average/mean, min, median, max, and standard deviation) 
+are computed to summarize the measurement data for each variable. 
